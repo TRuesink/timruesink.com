@@ -1,5 +1,8 @@
 import { combineReducers } from "redux";
+import authReducer from "./authReducer";
+import postReducer from "./postReducer";
 
 export default combineReducers({
-  change_me: () => "CHANGE ME",
+  auth: authReducer,
+  posts: postReducer,
 });
