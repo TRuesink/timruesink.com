@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { fetchUser } from "../actions";
+import { fetchUser, changeNav } from "../actions";
 import { Link } from "react-router-dom";
 
 class Navbar extends React.Component {
@@ -13,23 +13,18 @@ class Navbar extends React.Component {
         {!this.props.auth ? (
           <React.Fragment>
             <div className="item">
-              <a href="/auth/google" className="ui google plus button">
-                <i className="google icon"></i>
-                Sign in with Google
-              </a>
+              <Link to="/login" className="ui button primary">
+                <i className="user icon"></i>
+                Log In
+              </Link>
             </div>
           </React.Fragment>
         ) : (
           <React.Fragment>
+            <div className="item">Hey {this.props.auth.first}!</div>
             <div className="item">
-              <a href="/" className="ui button">
+              <a href="/api/logout" className="ui button primary">
                 <i className="user icon"></i>
-                My Dashboard
-              </a>
-            </div>
-            <div className="item">
-              <a href="/api/logout" className="ui google plus button">
-                <i className="google icon"></i>
                 Log out
               </a>
             </div>
@@ -43,13 +38,27 @@ class Navbar extends React.Component {
     return (
       <div>
         <div className="ui inverted secondary menu">
-          <Link to="/" className="active header item">
+          <Link
+            onClick={() => this.props.changeNav("TIM_RUESINK")}
+            to="/"
+            className={this.props.nav.timruesink}
+          >
             timruesink.com
           </Link>
-          <Link to="/blog" className="item">
+          <Link
+            onClick={() => this.props.changeNav("BLOG")}
+            to="/blog"
+            className={this.props.nav.blog}
+          >
             Blog
           </Link>
-          <a className="item">Projects</a>
+          <Link
+            onClick={() => this.props.changeNav("PROJECTS")}
+            to="/"
+            className={this.props.nav.projects}
+          >
+            Projects
+          </Link>
           <div className="right menu">{this.renderAuth()}</div>
         </div>
       </div>
@@ -63,7 +72,8 @@ class Navbar extends React.Component {
 const mapStateToProps = (state) => {
   return {
     auth: state.auth,
+    nav: state.nav,
   };
 };
 
-export default connect(mapStateToProps, { fetchUser })(Navbar);
+export default connect(mapStateToProps, { fetchUser, changeNav })(Navbar);

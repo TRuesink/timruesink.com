@@ -1,5 +1,5 @@
 import React from "react";
-import HomeContent from "./HomeContent";
+import ContentHighlight from "./ContentHighlight";
 import { connect } from "react-redux";
 import { fetchPosts } from "../../actions";
 
@@ -16,6 +16,10 @@ const content_1 = {
   body: `I'm glad you're here. I built this website to share things I'm interested in, and hear from you. Check out my blog for a window into my adventures, thoughts, hobbies, etc. Take a look at my projects if you're curious about my programming journey`,
   position: "right",
   image: tim_1,
+  buttons: [
+    { label: "Blog", path: "/blog" },
+    { label: "Projects", path: "/projects" },
+  ],
 };
 
 const content_2 = {
@@ -23,6 +27,7 @@ const content_2 = {
   body: `My name is Tim and I am a self-taught coder. I'm also a mechanical engineer by training, a salesperson by trade, an outdoor enthusiast, and a lover of good beer and good friends.`,
   position: "left",
   image: tim_2,
+  buttons: [{ label: "Connect", path: "/connect" }],
 };
 
 const blog_images = { 1: blog_1, 2: blog_2, 3: blog_3 };
@@ -34,9 +39,9 @@ class HomePage extends React.Component {
   render() {
     return (
       <div>
-        <HomeContent content={content_1} />
+        <ContentHighlight content={content_1} />
         <div className="ui section divider"></div>
-        <HomeContent content={content_2} />
+        <ContentHighlight content={content_2} />
         <div className="ui section divider"></div>
         <HomeTeaser
           title="Blog"

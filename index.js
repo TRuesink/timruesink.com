@@ -3,6 +3,8 @@ const express = require("express");
 const mongoose = require("mongoose");
 const passport = require("passport");
 const cookieSession = require("cookie-session");
+const cors = require("cors");
+const bodyParser = require("body-parser");
 // native imports
 require("./models/User");
 require("./services/passport");
@@ -21,6 +23,8 @@ app.use(
 );
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(cors());
+app.use(bodyParser.json());
 
 require("./routes/authRoutes")(app);
 require("./routes/adminRoutes")(app);

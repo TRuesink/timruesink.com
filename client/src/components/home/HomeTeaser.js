@@ -5,17 +5,16 @@ class HomeTeaser extends React.Component {
     const { content } = this.props;
     const { images } = this.props;
     return content.map((item) => {
-      item.image = images[item.id];
       return (
         <div key={item.id} className="column">
           <div className="ui fluid card">
             <div className="image">
-              <img src={item.image}></img>
+              <img src={images[item.id]} alt=""></img>
             </div>
             <div className="content">
               <div className="header">{item.title}</div>
               <div className="meta">
-                <a>Backpacking</a>
+                <a href="/">Backpacking</a>
               </div>
               <div className="description">{item.body}</div>
             </div>
@@ -40,7 +39,9 @@ class HomeTeaser extends React.Component {
         >
           {this.props.title}
         </h1>
-        <div className="ui three column grid">{this.renderCards()}</div>
+        <div className="ui three column stackable grid">
+          {this.renderCards()}
+        </div>
       </div>
     );
   }

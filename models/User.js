@@ -5,7 +5,9 @@ const userSchema = new Schema({
   googleId: String,
   firstName: String,
   lastName: String,
-  role: { type: String, default: "consumer" },
+  email: String,
+  password: String,
+  role: { type: String, default: "basic", enum: ["basic", "writer", "admin"] },
 });
 
 mongoose.model("users", userSchema);
